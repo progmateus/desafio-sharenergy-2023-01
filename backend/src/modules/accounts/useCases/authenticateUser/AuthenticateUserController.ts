@@ -7,9 +7,12 @@ class AuthenticateUserController {
     async handle(request: Request, response: Response) {
         const { username, password } = request.body;
 
+        const usersRepository = new UsersRepository();
+        const usersTokensRepository = new UsersTokensRepository();
+
         const authenticateUserUseCase = new AuthenticateUserUseCase(
-            new UsersRepository(),
-            new UsersTokensRepository()
+            usersRepository,
+            usersTokensRepository
         );
 
         const token = await authenticateUserUseCase.execute({
