@@ -28,15 +28,28 @@ class UsersRepository implements IUsersRepository {
     async findById(id: string): Promise<IUser> {
         return await this.repository.findById(id).exec();
     }
-    async update(id: string): Promise<IUser> {
-        return await this.repository.findOne({ id })
-    }
+
     async findByUsername(username: string): Promise<IUser> {
         return await this.repository.findOne({ username })
     }
 
     async delete(id: string): Promise<void> {
         await this.repository.deleteOne({ id })
+    }
+
+    async update({
+        id,
+        name,
+        lastname,
+        username,
+        password
+    }): Promise<void> {
+        return await this.repository.updateOne({ _id: id }, {
+            name,
+            lastname,
+            username,
+            password
+        })
     }
 
 
