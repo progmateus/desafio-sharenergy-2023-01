@@ -24,23 +24,23 @@ class AuthenticateUserUseCase {
     async execute({ username, password }) {
 
         if (username?.length < 3 || username?.length > 80 || !username) {
-            throw new AppError("Email or password incorrect1")
+            throw new AppError("Email or password incorrect", 401)
         }
 
         if (password?.length < 6 || password?.length > 80 || !password) {
-            throw new AppError("Email or password incorrect2")
+            throw new AppError("Email or password incorrect", 401)
         }
 
         const user = await this.usersRepository.findByUsername(username.toLocaleLowerCase());
 
         if (!user) {
-            throw new AppError("Email or password incorrect3")
+            throw new AppError("Email or password incorrect", 401)
         }
 
         const passwordMatch = await compare(password, user.password);
 
         if (!passwordMatch) {
-            throw new AppError("Email or password incorrect4")
+            throw new AppError("Email or password incorrect", 401)
         }
 
         const {
