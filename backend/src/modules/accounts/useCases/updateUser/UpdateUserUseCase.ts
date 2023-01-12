@@ -1,9 +1,6 @@
 import { compare, hash } from 'bcryptjs';
-import { Schema } from 'mongoose';
 import * as yup from 'yup';
 import { AppError } from '../../../../errors/AppError';
-import { IUpdateUserDTO } from '../../dtos/IUpdateUserDTO';
-import { UsersRepository } from '../../infra/repositories/UsersRepository';
 import { IUsersRepository } from '../../repositories/IUsersRepository';
 
 

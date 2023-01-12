@@ -4,7 +4,8 @@ import { UpdateUserUseCase } from "./UpdateUserUseCase";
 
 class UpdateUserController {
     async handle(request: Request, response: Response) {
-        const { id, name, lastname, username, new_password, last_password } = request.body;
+        const { name, lastname, username, new_password, last_password } = request.body;
+        const { id } = request.user
 
         const usersRepository = new UsersRepository();
         const updateUserUseCase = new UpdateUserUseCase(usersRepository);

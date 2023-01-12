@@ -13,8 +13,8 @@ const updateUserController = new UpdateUserController()
 
 usersRoutes.post("/", createUserController.handle);
 usersRoutes.get("/:id", ensureAuthenticated, findUserByIdController.handle);
-usersRoutes.delete("/:id", deleteUserByIdController.handle);
-usersRoutes.put("/", updateUserController.handle);
+usersRoutes.delete("/:id", ensureAuthenticated, deleteUserByIdController.handle);
+usersRoutes.put("/", ensureAuthenticated, updateUserController.handle);
 
 
 
